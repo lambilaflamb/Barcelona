@@ -43,7 +43,17 @@ function newNico(){let a=['Qui a déjà raté un train ?','Qui a envoyé un mess
 function submitPhoto(){let f=$('photo').files[0];$('photoResult').textContent=f?'Photo sélectionnée : '+f.name+'. Elle reste sur ce téléphone dans cette démo.':'Choisis une photo d’abord.'}
 function usePower(){if(powerUsed){$('powerResult').textContent='Pouvoir déjà utilisé.';return}powerUsed=true;$('powerResult').textContent='Bouclier activé : prochaine pénalité annulée (démo).';$('powerBtn').disabled=true}
 function saveKit(){let d={};['hotel','meet','contact','notes'].forEach(k=>d[k]=$(k).value);localStorage.setItem('bqkit',JSON.stringify(d));$('kitResult').textContent='Enregistré sur cet appareil.'}try{let d=JSON.parse(localStorage.getItem('bqkit')||'{}');['hotel','meet','contact','notes'].forEach(k=>$(k).value=d[k]||'')}catch(e){}
-function setBeauf(){let d={'Soft':'Humour léger et défis gentils.','Bien beauf':'Humour gras, pièges et défis absurdes.','Grand n\\'importe quoi':'Événements surprises et missions imprévisibles.','Légendaire':'Mode chaos, sans défi dangereux ni pression à boire.'};$('beaufDesc').textContent=d[$('beauf').value]}
+
+function setBeauf(){
+  let d = {
+    "Soft": "Humour léger et défis gentils.",
+    "Bien beauf": "Humour gras, pièges et défis absurdes.",
+    "Grand n'importe quoi": "Événements surprises et missions imprévisibles.",
+    "Légendaire": "Mode chaos, sans défi dangereux ni pression à boire."
+  };
+  $("beaufDesc").textContent = d[$("beauf").value];
+}
+
 function startWeekend(){clearInterval(weekend);week=172800;weekend=setInterval(()=>{week=Math.max(0,week-1);let h=week/3600|0,m=week%3600/60|0,s=week%60;$('weekendTimer').textContent=[h,m,s].map(x=>String(x).padStart(2,'0')).join(':');if(!week)stopWeekend()},1000);toast('Compte à rebours 48 h lancé')}function stopWeekend(){clearInterval(weekend);weekend=null;toast('Compte à rebours arrêté')}
 function resetDemo(){if(!confirm('Réinitialiser la démo ?'))return;xp=0;done=[];unlocked=['Le Catalan mystérieux'];powerUsed=false;$('powerBtn').disabled=false;stats();toast('Démo réinitialisée')}
 buildCap();stats();timers();updateDrunk();if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
