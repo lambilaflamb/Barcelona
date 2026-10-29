@@ -1,0 +1,18 @@
+{
+  "name": "Barcelona Quest 8-Bit",
+  "short_name": "Barcelona Quest",
+  "description": "Mini-jeux et défis d'EVG à Barcelone",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#111020",
+  "theme_color": "#15132a",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
